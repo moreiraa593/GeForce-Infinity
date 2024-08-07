@@ -54,7 +54,7 @@ To get started with GeForce Infinity, follow these steps:
 
 ## 💬 **Contributing**
 
-I welcome contributions from the community! I will soon publish 
+I welcome contributions from the community! I will soon publish a contribution guide
 
 ## 📜 **License**
 
