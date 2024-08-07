@@ -15,9 +15,6 @@ rpcClient.on('ready', () => {
   console.log('Discord Rich Presence is ready.');
 
   const updateActivity = (gameTitle) => {
-    const now = new Date();
-    const elapsedTime = Math.floor((now - startTime) / 1000); // Time in seconds
-
     rpcClient.setActivity({
       details: 'GeForce Infinity',
       state: gameTitle ? `Playing ${gameTitle}` : 'Idling...',
@@ -63,6 +60,36 @@ function injectCustomCSS() {
     div.green-circle {
       background-color: #4aa3ff !important;
     }
+    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+      caret-color: #00b6ff !important;
+    }
+    .theme-noir mat-form-field:not(.ng-valid .mat-form-field-invalid).mat-focused .mat-mdc-input-element {
+      border-color: #0089ff !important;}
+    .btn.alt-btn{
+    border-color: #0089ff !important; }
+    .ng-valid{
+      border-color: #3113ff !important;
+}
+   .btn:disabled {
+    background-color: #333;
+    color: #666; }
+    .btn{
+      background: #0de0ff !importannt}
+    .btn:hover{
+      background-color: #4aa3ff !important}
+    .theme-noir{
+--mdc-checkbox-selected-focus-icon-color: #0bfdff !important;
+--mdc-checkbox-selected-hover-icon-color: #0bfdff !important;
+--mdc-checkbox-selected-icon-color: #0bfdff !important;
+--mat-minimal-pseudo-checkbox-selected-checkmark-color: #0bfdff !important;
+--mdc-checkbox-selected-pressed-icon-color: #0bfdff !important;
+--mdc-checkbox-selected-focus-state-layer-color:#001dff !important;
+--mdc-checkbox-selected-hover-state-layer-color:#001dff !important;
+--mdc-checkbox-selected-pressed-state-layer-color: :#001dff !important;
+--mdc-filled-text-field-caret-color: #0bfdff !important;
+--mdc-filled-text-field-focus-label-text-color: #0bfdff !important;
+
+
   `;
 
   mainWindow.webContents.insertCSS(customCSS);
@@ -75,7 +102,7 @@ function createWindow() {
     title: 'GeForce Infinity', // Set the initial app title
     icon: path.join(__dirname, 'resources/bluenvidia.png'), // Set the app icon
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
     }
   });
 
@@ -85,7 +112,7 @@ function createWindow() {
   mainWindow.setFullScreenable(true);
   mainWindow.setFullScreen(false); // This makes it windowed fullscreen
 
-  // Inject custom CSS once the page has finished loading
+  // Inject custom CSS and replace colors once the page has finished loading
   mainWindow.webContents.on('did-finish-load', () => {
     injectCustomCSS();
     // Ensure the title stays as 'GeForce Infinity'
@@ -97,11 +124,12 @@ function createWindow() {
     event.preventDefault();
     let gameName = title.replace(/^GeForce NOW - /, '').replace(/ on GeForce NOW$/, '');
     // Reset to "GeForce Infinity" if the title is "GeForce Infinity | GeForce NOW"
-    if (title === 'GeForce Infinity | GeForce NOW') {
+    if (title === 'GeForce Infinity | GeForce NOW' || title === 'GeForce NOW') {
       mainWindow.setTitle('GeForce Infinity');
+    } else {
+      const modifiedTitle = `GeForce Infinity${gameName ? ' | ' + gameName : ''}`;
+      mainWindow.setTitle(modifiedTitle);
     }
-    const modifiedTitle = `GeForce Infinity${gameName ? ' | ' + gameName : ''}`;
-    mainWindow.setTitle(modifiedTitle);
   });
 }
 

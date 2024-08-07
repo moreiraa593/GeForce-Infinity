@@ -1,19 +1,69 @@
 {
-  "name": "geforce-for-linux",
+  "name": "geforce-infnity",
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "rebuild": "electron-rebuild",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "AstralVixen",
+    "email": "astral.vixen.hu@gmail.com"
+  },
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "electron": "^31.3.1"
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3",
+    "electron-rebuild": "^3.2.9"
   },
   "dependencies": {
     "discord-rpc": "^4.0.1"
+  },
+  "build": {
+    "appId": "com.example.geforceinfinity",
+    "productName": "GeForce Infinity",
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*",
+      "main.js",
+      "preload.js",
+      "resources/**/*"
+    ],
+    "directories": {
+      "output": "build"
+    },
+    "mac": {
+      "category": "public.app-category.games",
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "resources/bluenvidia.png"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "icon": "resources/bluenvidia.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "icon": "resources/bluenvidia.png",
+      "maintainer": "AstralVixen <astral.vixen.hu@gmail.com>"
+    }
   }
 }
