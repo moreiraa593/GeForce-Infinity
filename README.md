@@ -9,10 +9,6 @@
 - **Enhanced UI**: GeForce Infinity aims to improve the user interface of GeForce NOW, providing a more intuitive and enjoyable experience.
 - **Custom Discord Rich Presence**: Show off your gaming status with personalized Discord Rich Presence. Display game details and status updates directly in your Discord profile.
 
-⚠️ Disclaimer
-
-GeForce Infinity is an independent project and is not affiliated with, sponsored by, or endorsed by Nvidia Corporation. All trademarks and logos used are the property of their respective owners. The app is provided as-is, and the developers are not responsible for any issues or damages that may arise from its use.
-
 ## 🛠️ **Planned Features**
 
 We have several exciting features planned to further enhance your experience:
